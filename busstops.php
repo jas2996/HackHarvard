@@ -1,6 +1,9 @@
 <?php
 
 include 'latlong.php';
+include 'calllatlong.php';
+
+
 
 $db = new mysqli('localhost', 'root', 'secret', 'harvardhack');
 
@@ -47,16 +50,16 @@ foreach($rows as $row)
 {
 
 
-  $busaddress = $row['BusAddress']; // send to anthuan (json)
+  $busaddress = $row['BusAddress'];
 
   $buspopulation = $row['Population'];
-
+  file_put_contents('businfo.json', json_encode($rows, JSON_PRETTY_PRINT));
+    file_put_contents('startaddress.json', json_encode($latitude." ".$longitude));
 
 }
 
-//$bestpop = min(array($row['Population'])); // send to anthuan (json)
+//$bestpop = min(array($row['Population']));
 
-//file_put_contents('population.json', json_encode( $rows));
 
 
 
