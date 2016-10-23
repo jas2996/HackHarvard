@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -109,6 +110,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
+
+
         }
 
 
@@ -123,6 +126,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
          */
 //THE CODE STARTS HERE
         public String loadJSONFromAsset() {
+
             String json = null;
             String a = null;
             String pop[];
@@ -184,13 +188,67 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onMapReady(GoogleMap googleMap) {
             mMap = googleMap;
-            headerLines.add(0, "Population: 12");
+            int pop = 20;
+            Marker m1 = googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(42.3800977, -71.1166286))//harvard
+                    .anchor(0.5f, 0.5f)
+                    .title("Harvard")
+                    .snippet("Starting Point")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green)));
+
+
+            Marker m2 = googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(42.376639, -71.114094))//stop 1
+                    .anchor(0.5f, 0.5f)
+                    .title("Stop 2")
+                    .snippet("2 people")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.yellow)));
+
+
+            Marker m3 = googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(42.374856, -71.118458))
+                    .anchor(0.5f, 0.5f)
+                    .title("Stop 4")
+                    .snippet("1 people")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.yellow)));
+            Marker m4 = googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(42.375302, -71.119237))
+                    .anchor(0.5f, 0.5f)
+                    .title("Stop 3")
+                    .snippet("7 people")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.yellow)));
+            Marker m5 = googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(42.377805, -71.119941))
+                    .anchor(0.5f, 0.5f)
+                    .title("Stop 1")
+                    .snippet("3 people")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.yellow)));
+            Marker m6 = googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(42.374685, -71.114570))
+                    .anchor(0.5f, 0.5f)
+                    .title("Stop 5")
+                    .snippet("7 people")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.yellow)));
+            Marker m7 = googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng( 42.3520298, -71.0557696)) //south station
+                    .anchor(0.5f, 0.5f)
+                    .title("South Station")
+                    .snippet("Ending Point")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.red)));
+
+         /*   if (pop > 15)
+                m1.setTitle("red");
+            else if (pop > 10)
+                m1.setTitle("Yellow Marker");
+            else if( pop <= 10)
+                m1.setTitle("green");
+       /*     headerLines.add(0, "Population: 12");
             headerLines.add(1, "lat: -30");
             headerLines.add(2, "lng: 130");
-    /*        headerLines.add(3, "Population: 20");
+            headerLines.add(3, "Population: 20");
             headerLines.add(4, "lat: 50.231458");
             headerLines.add(5, "lng: 30.249832");
-      */      for (int x = 0; x <= headerLines.size(); x++) {
+            for (int x = 0; x <= headerLines.size(); x++) {
                 String population = headerLines.get(x).substring(12);
                 x++;
                 int pop = Integer.parseInt(population);
@@ -206,7 +264,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(x == 3){
                     LatLng first = new LatLng(lat, lng);
 
-                    Marker m1 = googleMap.addMarker(new MarkerOptions().position(first));
+                    Marker m1 = googleMap.addMarker(new MarkerOptions().position(first).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker1)));
                     if (pop > 15)
                         m1.setTitle("red");
                     else if (pop > 10)
@@ -214,7 +272,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     else if( pop <= 10)
                         m1.setTitle("green");
                 }
-       /*         else if (x == 6){
+               else if (x == 6){
                     LatLng sec = new LatLng(lat, lng);
                     Marker m2 = googleMap.addMarker(new MarkerOptions().position(sec));
                     if (pop > 15)
@@ -224,12 +282,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     else if( pop <= 10)
                         m2.setTitle("green");
                 }
-*/
+
             }
 
             // Add a marker in Sydney and move the camera
             //ORIGINAL IS THE USER'S ADDRESS
             // mMap.moveCamera(CameraUpdateFactory.newLatLng(original));
-        }
+     */   }
     }
 
